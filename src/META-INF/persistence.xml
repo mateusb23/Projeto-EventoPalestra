@@ -1,0 +1,21 @@
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="EventoPU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>com.mateusb23.modelo.Palestra</class>
+    	<class>com.mateusb23.modelo.Palestrante</class>
+    	<class>com.mateusb23.modelo.Local</class>
+
+		<properties>
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver" />
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@191.168.0.121:1521:eventopalestra" />
+			<property name="hibernate.connection.username" value="administrador" />
+			<property name="hibernate.connection.password" value="server2021" />
+
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
+		</properties>
+	</persistence-unit>
+</persistence>
