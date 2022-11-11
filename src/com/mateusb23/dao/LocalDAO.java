@@ -14,9 +14,11 @@ public class LocalDAO {
 		Local local = null;
 		
 		try {
-			
+			local = em.find(Local.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			em.close();
 		}
 		
 		return local;
@@ -32,6 +34,7 @@ public class LocalDAO {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			em.getTransaction().rollback();
 		} finally {
 			em.close();
 		}
@@ -54,6 +57,26 @@ public class LocalDAO {
 		}
 		
 		return local;
+	}
+	
+	public void removeById(Long id) {
+		
+		EntityManager em = new ConnectionFactory().getEntityManager();
+		
+		try {
+			em.getTransaction().begin();
+			Local local = findById(id);
+			if (local != null) {
+				em.remove(local);
+				em.getTransaction().commit();
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+		
 	}
 	
 	
